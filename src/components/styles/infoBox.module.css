@@ -1,0 +1,49 @@
+.infoboxes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.infobox {
+  flex: 1;
+  min-width: 15rem;
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+
+  padding: 1rem 0.5rem;
+
+  transition: 0.2s all ease-in-out;
+  border: none;
+
+  cursor: pointer;
+}
+.infobox:hover {
+  background-color: rgb(233, 227, 227);
+}
+
+.infobox__left img {
+  max-height: 3.5rem;
+}
+
+.infobox__right {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infobox__right span {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.infobox__right > :first-child {
+  font-weight: 600;
+  font-size: 1rem;
+}

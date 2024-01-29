@@ -1,0 +1,24 @@
+:root {
+  --bg-primary: #1e2128;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #565d6d;
+  --text-secondary: #6d31ed;
+  --text-main: #171a1f;
+
+  /* Status colors */
+  --pending-color: #f0ad4e;
+  --in-progress-color: #007bff;
+  --completed-color: #28a745;
+  --cancelled-color: #dc3545;
+  --urgent-color: #ffc107;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
