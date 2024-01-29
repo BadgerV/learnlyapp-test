@@ -2,6 +2,7 @@ import Sidebar from "@/components/SideBar";
 import styles from "./page.module.css";
 import FilterComponent from "@/components/FilterComponent";
 import InfoBoxes from "@/components/InfoBoxes";
+import TaskList from "@/components/TaskList";
 
 export default function Home() {
   return (
@@ -24,10 +25,14 @@ export default function Home() {
         </div>
 
         <div className={styles.tasks}>
-          <span>Tasks</span>
-
+          <span className={styles.tasks__span}>Tasks</span>
+          <TaskList />
           <div className={styles.tasks__container}></div>
         </div>
+      </div>
+
+      <div className={styles.add__button}>
+        <img src="/assets/add-icon.svg" alt="Add Task" />
       </div>
     </main>
   );

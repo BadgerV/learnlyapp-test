@@ -1,0 +1,68 @@
+.task__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--bg-secondary);
+
+  padding: 1.5rem 1rem;
+  border-radius: 15px;
+  flex-grow: 1;
+  width: 100%;
+
+  cursor: pointer;
+}
+
+.pendingBorderColor {
+  border-color: #f0ad4e;
+}
+
+.task__item_left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.task__item_left__name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.task__item_left__desc {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.task__item_left__time {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+.task__item_left__time span {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.task__item_right {
+  position: relative;
+}
+
+.task__item_right__modal {
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(233, 227, 227);
+
+  border-radius: 10px;
+}
+
+.task__item_right__modal span {
+  font-size: 0.9rem;
+
+  padding: 0.5rem 1rem;
+}
+.task__item_right__modal span:hover {
+  background-color: var(--bg-primary);
+  color: white;
+}

@@ -7,8 +7,10 @@
 }
 
 .infobox {
-  flex: 1;
   min-width: 15rem;
+  flex-grow: 1;
+  flex: 1;
+
   background-color: var(--bg-secondary);
   border-radius: 10px;
 
@@ -29,14 +31,13 @@
 }
 
 .infobox__left img {
-  max-height: 3.5rem;
+  max-height: 3.3rem;
 }
 
 .infobox__right {
-  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
 .infobox__right span {
   color: var(--text-primary);

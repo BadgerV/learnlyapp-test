@@ -1,6 +1,6 @@
 .sidebar {
   background-color: var(--bg-primary);
-  max-width: 4rem;
+  width: 4rem;
   min-height: 100dvh;
 
   display: flex;
@@ -8,11 +8,16 @@
   align-items: center;
 
   padding: 3rem 0 1rem 0;
+
+  position: fixed;
 }
 
 .logoContainer {
   margin-bottom: 2rem;
   cursor: pointer;
+}
+.logoContainer img {
+  scale: 0.7;
 }
 
 .navLinks {

@@ -1,11 +1,15 @@
 .main {
   display: flex;
   flex-direction: row;
+
+  position: relative;
 }
+
 .main__right {
   flex: 1;
 
   padding: 1.5rem;
+  margin-left: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -23,7 +27,7 @@
 }
 
 .pages__infoboxes {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .filter__container {
@@ -33,9 +37,11 @@
 .tasks {
 }
 
-.tasks span {
+.tasks__span {
   font-weight: 700;
   font-size: 1.5rem;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 .tasks__container {
@@ -43,4 +49,29 @@
   flex-direction: row;
   flex-wrap: wrap;
   background-color: var(--bg-secondary);
+}
+
+.add__button {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  background-color: var(--text-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+
+  box-shadow: -3px -1px 41px -13px rgba(109, 49, 237, 1);
+  -webkit-box-shadow: -3px -1px 41px -13px rgba(109, 49, 237, 1);
+  -moz-box-shadow: -3px -1px 41px -13px rgba(109, 49, 237, 1);
+
+  transition: 0.2s all ease-in-out;
+}
+.add__button:hover {
+  box-shadow: -3px -1px 41px -10px rgba(109,49,237,1);
+-webkit-box-shadow: -3px -1px 41px -10px rgba(109,49,237,1);
+-moz-box-shadow: -3px -1px 41px -10px rgba(109,49,237,1);
+}
+
+.add__button img {
+  height: 3.8rem;
+  width: 4rem;
 }
