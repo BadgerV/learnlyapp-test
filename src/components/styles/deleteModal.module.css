@@ -5,6 +5,9 @@
   overflow: hidden;
 
   position: fixed;
+  top: 0;
+  left: 0;
+
   background-color: #dc354681;
 
   display: flex;
@@ -25,7 +28,7 @@
 
 .delete__modal_cancel_cont {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 0.5rem;
 
   cursor: pointer;

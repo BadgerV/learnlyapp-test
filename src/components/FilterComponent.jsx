@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import styles from "./styles/filterComponent.module.css";
+import { useDispatch } from "react-redux";
+import { filterTasks } from "@/lib/slices/TaskSlice";
 
 const FilterComponent = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleClick = () => {
-    console.log("Worker");
+  const dispatch = useDispatch();
+
+  const handleClick = (filterBy) => {
     setModalOpen(!modalOpen);
   };
 
@@ -19,10 +22,38 @@ const FilterComponent = () => {
       </div>
       {modalOpen && (
         <div className={styles.filter__not_visible}>
-          <span onClick={handleClick}>Pending</span>
-          <span onClick={handleClick}>Completed</span>
-          <span onClick={handleClick}>Urgent</span>
-          <span onClick={handleClick}>Cancelled</span>
+          <span
+            onClick={() => {
+              dispatch(filterTasks("pending"));
+              handleClick();
+            }}
+          >
+            Pending
+          </span>
+          <span
+            onClick={() => {
+              dispatch(filterTasks("completed"));
+              handleClick();
+            }}
+          >
+            Completed
+          </span>
+          <span
+            onClick={() => {
+              dispatch(filterTasks("urgent"));
+              handleClick();
+            }}
+          >
+            Urgent
+          </span>
+          <span
+            onClick={() => {
+              dispatch(filterTasks("cancelled"));
+              handleClick();
+            }}
+          >
+            Cancelled
+          </span>
         </div>
       )}
     </div>
