@@ -64,14 +64,25 @@
   -moz-box-shadow: -3px -1px 41px -13px rgba(109, 49, 237, 1);
 
   transition: 0.2s all ease-in-out;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .add__button:hover {
-  box-shadow: -3px -1px 41px -10px rgba(109,49,237,1);
--webkit-box-shadow: -3px -1px 41px -10px rgba(109,49,237,1);
--moz-box-shadow: -3px -1px 41px -10px rgba(109,49,237,1);
+  box-shadow: -3px -1px 41px -10px rgba(109, 49, 237, 1);
+  -webkit-box-shadow: -3px -1px 41px -10px rgba(109, 49, 237, 1);
+  -moz-box-shadow: -3px -1px 41px -10px rgba(109, 49, 237, 1);
 }
 
 .add__button img {
-  height: 3.8rem;
+  height: 4rem;
   width: 4rem;
+}
+
+@media screen and (max-width: 560px) {
+  .add__button {
+    right: 1rem;
+    bottom: 1rem;
+  }
 }

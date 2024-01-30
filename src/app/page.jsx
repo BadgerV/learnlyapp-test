@@ -1,10 +1,16 @@
+"use client";
+
 import Sidebar from "@/components/SideBar";
 import styles from "./page.module.css";
 import FilterComponent from "@/components/FilterComponent";
 import InfoBoxes from "@/components/InfoBoxes";
 import TaskList from "@/components/TaskList";
+import { useState } from "react";
+import TaskForm from "@/components/TaskForm";
 
 export default function Home() {
+  const [addModalState, setAddModalState] = useState(false);
+
   return (
     <main className={styles.main}>
       <div className={styles.main__left}>
@@ -31,9 +37,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.add__button}>
+      <div
+        className={styles.add__button}
+        onClick={() => setAddModalState(!addModalState)}
+      >
         <img src="/assets/add-icon.svg" alt="Add Task" />
       </div>
+
+      {addModalState && <TaskForm setModal={setAddModalState} />}
     </main>
   );
 }
