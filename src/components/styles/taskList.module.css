@@ -7,6 +7,15 @@
   gap: 1.5rem;
 }
 
+.task__list_span {
+  grid-column: 1 / -1;
+  padding: 3rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
 @media screen and (max-width: 1135px) {
   .task__list {
     grid-template-columns: repeat(3, 1fr);

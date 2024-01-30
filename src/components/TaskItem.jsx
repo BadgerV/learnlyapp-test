@@ -72,6 +72,7 @@ const TaskItem = ({ name, desc, status, task, createdAt, id }) => {
     setDeleteModal(true);
     dispatch(setIDToBeDeleted(id));
   };
+  
 
   return (
     <>

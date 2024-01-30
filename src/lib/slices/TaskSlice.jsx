@@ -10,6 +10,7 @@ const initialState = {
   taskToBeDeletedId: -1,
 
   filteredList: [],
+  filterType: "",
 };
 
 export const taskSlice = createSlice({
@@ -37,6 +38,14 @@ export const taskSlice = createSlice({
       }
       state.lisOfTasks.push(newtask);
       state.totalTasks = state.lisOfTasks.length;
+
+      if (state.filterType !== "") {
+        state.filteredList = state.lisOfTasks.filter((task) => {
+          return task.status === state.filterType;
+        });
+      }
+
+      localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
     },
 
     updateTask: (state, action) => {
@@ -45,7 +54,6 @@ export const taskSlice = createSlice({
 
       // Ensure serializable values
       updatedTask.status = action.payload.formData.status.value;
-      updatedTask.createdAt = Date.now();
 
       // Find the index of the task to update
       const index = state.lisOfTasks.findIndex((task) => task.id === id);
@@ -69,6 +77,14 @@ export const taskSlice = createSlice({
           (task) => task.status === "urgent"
         ).length;
       }
+
+      if (state.filterType !== "") {
+        state.filteredList = state.lisOfTasks.filter((task) => {
+          return task.status === state.filterType;
+        });
+      }
+
+      localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
     },
 
     deleteTask: (state, action) => {
@@ -90,14 +106,28 @@ export const taskSlice = createSlice({
       state.totalUrgent = state.lisOfTasks.filter(
         (task) => task.status === "urgent"
       ).length;
+
+      if (state.filterType !== "") {
+        state.filteredList = state.lisOfTasks.filter((task) => {
+          return task.status === state.filterType;
+        });
+      }
+
+      localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
     },
     setIDToBeDeleted: (state, action) => {
       state.taskToBeDeletedId = action.payload;
     },
     filterTasks: (state, action) => {
-      state.filteredList = state.lisOfTasks.filter((task) => {
-        return task.status === action.payload;
-      });
+      state.filterType = action.payload;
+      if (action.payload !== "") {
+        state.filteredList = state.lisOfTasks.filter((task) => {
+          return task.status === action.payload;
+        });
+      }
+    },
+    setListOfTasks: (state, action) => {
+      state.lisOfTasks = action.payload;
     },
   },
 });
@@ -108,6 +138,7 @@ export const {
   setIDToBeDeleted,
   deleteTask,
   filterTasks,
+  setListOfTasks,
 } = taskSlice.actions;
 
 export const taskReducer = taskSlice.reducer;
