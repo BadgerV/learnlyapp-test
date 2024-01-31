@@ -49,8 +49,11 @@ export const taskSlice = createSlice({
           return task.status === state.filterType;
         });
       }
-      //saves listOfTasks in localstorage
-      localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
+      //saves listOfTasks in window.localStorage
+      window.localStorage.setItem(
+        "listOfTasks",
+        JSON.stringify(state.lisOfTasks)
+      );
     },
 
     //updates task
@@ -90,8 +93,11 @@ export const taskSlice = createSlice({
           return task.status === state.filterType;
         });
       }
-      //saves listOfTasks in localstorage
-      localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
+      //saves listOfTasks in window.localStorage
+      window.localStorage.setItem(
+        "listOfTasks",
+        JSON.stringify(state.lisOfTasks)
+      );
     },
 
     //deletes task
@@ -120,8 +126,11 @@ export const taskSlice = createSlice({
           return task.status === state.filterType;
         });
       }
-      //saves listOfTasks in localstorage
-      localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
+      //saves listOfTasks in window.localStorage
+      window.localStorage.setItem(
+        "listOfTasks",
+        JSON.stringify(state.lisOfTasks)
+      );
     },
     //sets the particular task ID to beb deleted
     setIDToBeDeleted: (state, action) => {
@@ -137,7 +146,7 @@ export const taskSlice = createSlice({
       }
     },
 
-    //sets list of tasks at the beginning of application from localstorage
+    //sets list of tasks at the beginning of application from window.localStorage
     setListOfTasks: (state, action) => {
       state.lisOfTasks = action.payload;
 
@@ -157,7 +166,7 @@ export const taskSlice = createSlice({
     setTimeCreated: (state, action) => {
       state.timeCreated = action.payload;
 
-      localStorage.setItem("timeCreated", action.payload);
+      window.localStorage.setItem("timeCreated", action.payload);
     },
   },
 });

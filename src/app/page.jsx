@@ -15,9 +15,13 @@ export default function Home() {
   const [addModalState, setAddModalState] = useState(false);
   const dispatch = useDispatch();
 
-  //get list of tasks from redux rtoolkit state
-  const listOfTasks = JSON.parse(localStorage.getItem("listOfTasks"));
-  const timeCreated = localStorage.getItem("timeCreated");
+  let timeCreated, listOfTasks;
+
+  useEffect(() => {
+    
+    listOfTasks = JSON.parse(window.localStorage.getItem("listOfTasks"));
+    timeCreated = window.localStorage.getItem("timeCreated");
+  }, []);
 
   //get time created from rToolkit state
   const createdTime = useSelector((state) => state.taskSlice.timeCreated);
@@ -35,7 +39,7 @@ export default function Home() {
       // If timeCreated is null, dispatch the action to set the current time
       const currentTime = Date.now();
       dispatch(setTimeCreated(currentTime));
-      localStorage.setItem("timeCreated", currentTime);
+      window.localStorage.setItem("timeCreated", currentTime);
     }
   }, []);
 
