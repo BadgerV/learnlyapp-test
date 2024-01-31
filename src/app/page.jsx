@@ -18,7 +18,6 @@ export default function Home() {
   let timeCreated, listOfTasks;
 
   useEffect(() => {
-    
     listOfTasks = JSON.parse(window.localStorage.getItem("listOfTasks"));
     timeCreated = window.localStorage.getItem("timeCreated");
   }, []);
@@ -55,7 +54,9 @@ export default function Home() {
       <div className={styles.main__right}>
         <span className={styles.product_name}>Teachmate Task Manager</span>
         <span className={styles.created__at_text}>
-          {createdTime ? formatDate(+createdTime) : "Loading..."}
+          {createdTime
+            ? `Created on: ${formatDate(+createdTime)}`
+            : "Loading..."}
         </span>
 
         <div className={styles.pages__infoboxes}>
