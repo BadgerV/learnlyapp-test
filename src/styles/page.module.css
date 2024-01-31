@@ -34,9 +34,6 @@
   margin-bottom: 2rem;
 }
 
-.tasks {
-}
-
 .tasks__span {
   font-weight: 700;
   font-size: 1.5rem;
@@ -53,6 +50,8 @@
 
 .add__button {
   position: fixed;
+
+  z-index: 100000000000;
   bottom: 3rem;
   right: 3rem;
   background-color: var(--text-secondary);
