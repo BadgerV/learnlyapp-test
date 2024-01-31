@@ -1,4 +1,4 @@
-# Mentalyc 
+# Teachmate Task Manager 
 
 - Teachmate Task Manager is a utility designed to assist individuals in organizing their tasks, allowing them to create, modify, and remove tasks while assigning specific statuses to each task.
 - Demo Live at : https://learnlyapp-test-segunmaru-faozan.vercel.app/
@@ -22,7 +22,7 @@
 ## Code Reviews && Style.
 
 - All next components and functional components are written in the `.jsx` format.
-- Styles are saved in styles folder with the `.module.css' format.
+- Styles are saved in styles folder with the `.module.css` format.
 
 ## Dependencies used
 
