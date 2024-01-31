@@ -1,23 +1,22 @@
 "use client";
 
+import styles from "../styles/filterComponent.module.css";
+
 import { useState } from "react";
-import styles from "./styles/filterComponent.module.css";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { filterTasks } from "@/lib/slices/TaskSlice";
+import { capitalizeFirstLetter } from "@/utils/utils";
 
 const FilterComponent = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-
   const dispatch = useDispatch();
-
   const filterType = useSelector((state) => state.taskSlice.filterType);
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleClick = () => {
     setModalOpen(!modalOpen);
-  };
-
-  const capitalizeFirstLetter = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   return (

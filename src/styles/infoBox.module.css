@@ -50,7 +50,7 @@
   font-size: 1rem;
 }
 
-@media screen and (max-width: 650px) {
+/* @media screen and (max-width: 650px) {
   .infobox__left img {
     display: none;
   }
@@ -58,4 +58,4 @@
   .infobox {
     min-width: 10rem;
   }
-}
+} */

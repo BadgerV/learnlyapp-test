@@ -1,7 +1,8 @@
+import styles from "../styles/taskList.module.css";
+
 import { useSelector } from "react-redux";
-import styles from "./styles/taskList.module.css";
+
 import TaskItem from "./TaskItem";
-import { useEffect } from "react";
 
 const TaskList = () => {
   const listOfTasks = useSelector((state) => state.taskSlice.lisOfTasks);
@@ -32,19 +33,3 @@ const TaskList = () => {
 };
 
 export default TaskList;
-
-// {
-//   filteredList.length === 0 ? (
-//     listOfTasks.length === 0 ? (
-//       <span>No tasks yet</span>
-//     ) : (
-// listOfTasks.map((task, index) => {
-//   return <TaskItem {...task} key={index} />;
-// })
-//     )
-//   ) : (
-//   filteredList.map((task, index) => {
-//     return <TaskItem {...task} key={index} />;
-//   })
-// );
-// }

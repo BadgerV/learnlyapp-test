@@ -1,30 +1,13 @@
-import styles from "./styles/taskModal.module.css";
+import styles from "../styles/taskModal.module.css";
 
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { returnColor } from "@/utils/utils";
+import { timeAgo } from "@/utils/utils";
 
 const TaskModal = ({ name, desc, task, status, createdAt, cancelModal }) => {
-  const returnBackgroundColor = () => {
-    if (status === "pending") {
-      return "#f0ad4e";
-    } else if (status === "completed") {
-      return "#28a745";
-    } else if (status === "cancelled") {
-      return "#dc3545";
-    } else if (status === "urgent") {
-      return "#007bff";
-    }
-    return "black";
-  };
-
-  // Function to convert to "30 mins ago" format
-  function timeAgo(timestamp) {
-    return formatDistanceToNow(timestamp, { addSuffix: true });
-  }
-
   return (
     <div
       className={styles.task__modal}
-      style={{ backgroundColor: returnBackgroundColor() }}
+      style={{ backgroundColor: returnColor(status) }}
     >
       <div className={styles.task__modal_cont}>
         <div
@@ -37,7 +20,7 @@ const TaskModal = ({ name, desc, task, status, createdAt, cancelModal }) => {
         <div className={styles.task__modal__status_and_createdAt}>
           <span
             className={styles.task__modal_status}
-            style={{ backgroundColor: returnBackgroundColor() }}
+            style={{ backgroundColor: returnColor(status) }}
           >
             {status}
           </span>

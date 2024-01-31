@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
 
-import "./globals.css";
+import "../styles/globals.css";
 import ReduxProvider from "./StoreProvider";
 
 const poppins = Poppins({

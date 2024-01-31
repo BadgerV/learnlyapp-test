@@ -1,78 +1,56 @@
 "use client";
 
+import styles from "../styles/taskItem.module.css";
+
 import { useState, useRef, useEffect } from "react";
-import styles from "./styles/taskItem.module.css";
+import { useDispatch } from "react-redux";
+
 import TaskModal from "./TaskModal";
 import TaskForm from "./TaskForm";
-import format from "date-fns/format";
 import DeleteModal from "./DeleteModal";
 
-import { useDispatch } from "react-redux";
 import { setIDToBeDeleted } from "@/lib/slices/TaskSlice";
+import { returnColor } from "@/utils/utils";
+import { convertStatusToOption } from "@/utils/utils";
+import { formatDate } from "@/utils/utils";
 
 const TaskItem = ({ name, desc, status, task, createdAt, id }) => {
+  const dispatch = useDispatch();
+
   const [modal, setModal] = useState(false);
   const [taskModal, setTaskModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+
   const modalRef = useRef(null);
 
-  const dispatch = useDispatch();
-
+  //handles outside click
   useEffect(() => {
-    // Add event listener when the component mounts
     document.addEventListener("click", handleOutsideClick);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, []); // Empty dependency array ensures that the effect runs only once
+  }, []);
 
+  //handles modal click
   const handleModalClick = (e) => {
-    // Prevent the event from propagating to the document
     e.stopPropagation();
     setModal(!modal);
   };
 
+  //handles outside click
   const handleOutsideClick = (e) => {
-    // Close the modal if the click occurs outside the modal
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setModal(false);
     }
   };
 
-  const returnBorderColor = () => {
-    if (status === "pending") {
-      return "#f0ad4e";
-    } else if (status === "completed") {
-      return "#28a745";
-    } else if (status === "cancelled") {
-      return "#dc3545";
-    } else if (status === "urgent") {
-      return "#007bff";
-    }
-    return "black";
-  };
-
-  const convertStatusToOption = (status) => {
-    const formattedStatus = status.charAt(0).toUpperCase() + status.slice(1);
-    return {
-      value: status,
-      label: formattedStatus,
-    };
-  };
-
-  // Function to convert to "Wed, 24 Feb 2024" format
-  function formatDate(timestamp) {
-    return format(timestamp, "EEE, dd MMM yyyy");
-  }
-
+  //handles delete
   const handleDelete = () => {
     setDeleteModal(true);
     dispatch(setIDToBeDeleted(id));
   };
-  
 
   return (
     <>
@@ -94,7 +72,7 @@ const TaskItem = ({ name, desc, status, task, createdAt, id }) => {
           name={name}
           desc={desc}
           task={task}
-          setUpdateModal={setUpdateModal}
+          setModal={setUpdateModal}
         />
       )}
 
@@ -103,7 +81,7 @@ const TaskItem = ({ name, desc, status, task, createdAt, id }) => {
       <div
         onClick={() => setTaskModal(true)}
         className={styles.task__item}
-        style={{ border: `2px solid ${returnBorderColor()}` }}
+        style={{ border: `2px solid ${returnColor(status)}` }}
       >
         <div className={styles.task__item_left}>
           <span className={styles.task__item_left__name}>{name}</span>

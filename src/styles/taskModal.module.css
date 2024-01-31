@@ -14,6 +14,17 @@
   z-index: 1000000000;
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 .task__modal_cont {
   display: flex;
   flex-direction: column;
@@ -32,6 +43,8 @@
   background-color: var(--bg-secondary);
 
   position: relative;
+
+  animation: slide-in 0.2s ease-in-out;
 }
 
 .task__modal_cancel_cont {

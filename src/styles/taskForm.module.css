@@ -17,6 +17,17 @@
   z-index: 1000000000;
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 .task__form_container {
   display: flex;
   flex-direction: column;
@@ -33,6 +44,8 @@
   background-color: var(--bg-secondary);
 
   position: relative;
+
+  animation: slide-in 0.2s ease-in-out;
 }
 
 .task__form_cancel_cont {
@@ -98,6 +111,13 @@
 }
 .task__form_created__button > :last-child {
   background-color: var(--cancelled-color);
+}
+.task__form_created__button_update__button:disabled {
+  background-color: #007bffcf;
+}
+
+.task__form_created__button_add__button:disabled {
+  background-color: #28a746d0;
 }
 
 .task__form_not_created__button {

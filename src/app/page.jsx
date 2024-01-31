@@ -1,28 +1,47 @@
 "use client";
 
 import Sidebar from "@/components/SideBar";
-import styles from "./page.module.css";
+import styles from "../styles/page.module.css";
 import FilterComponent from "@/components/FilterComponent";
 import InfoBoxes from "@/components/InfoBoxes";
 import TaskList from "@/components/TaskList";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TaskForm from "@/components/TaskForm";
-import { setListOfTasks } from "@/lib/slices/TaskSlice";
+import { setListOfTasks, setTimeCreated } from "@/lib/slices/TaskSlice";
+import { formatDate } from "@/utils/utils";
 
 export default function Home() {
   const [addModalState, setAddModalState] = useState(false);
   const dispatch = useDispatch();
 
+  //get list of tasks from redux rtoolkit state
   const listOfTasks = JSON.parse(localStorage.getItem("listOfTasks"));
+  const timeCreated = localStorage.getItem("timeCreated");
+
+  //get time created from rToolkit state
+  const createdTime = useSelector((state) => state.taskSlice.timeCreated);
 
   useEffect(() => {
-    if (listOfTasks.length === 0) {
-      return;
-    } else {
+    // If listOfTasks is not null, dispatch the action to set it
+    if (listOfTasks !== null) {
       dispatch(setListOfTasks(listOfTasks));
     }
+
+    // If timeCreated is not null, dispatch the action to set it
+    if (timeCreated !== null) {
+      dispatch(setTimeCreated(timeCreated));
+    } else {
+      // If timeCreated is null, dispatch the action to set the current time
+      const currentTime = Date.now();
+      dispatch(setTimeCreated(currentTime));
+      localStorage.setItem("timeCreated", currentTime);
+    }
   }, []);
+
+  useEffect(() => {
+    console.log(timeCreated);
+  }, [timeCreated]);
 
   return (
     <main className={styles.main}>
@@ -32,7 +51,7 @@ export default function Home() {
       <div className={styles.main__right}>
         <span className={styles.product_name}>Teachmate Task Manager</span>
         <span className={styles.created__at_text}>
-          Created On: June 14, 2022
+          {createdTime ? formatDate(+createdTime) : "Loading..."}
         </span>
 
         <div className={styles.pages__infoboxes}>

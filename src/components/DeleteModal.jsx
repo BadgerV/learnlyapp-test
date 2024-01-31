@@ -1,12 +1,12 @@
 import { deleteTask } from "@/lib/slices/TaskSlice";
-import styles from "./styles/deleteModal.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import styles from "../styles/deleteModal.module.css";
+import { useDispatch } from "react-redux";
 
 const DeleteModal = ({ setDeleteModal, id = -1 }) => {
   const dispatch = useDispatch();
 
+  //handle delete
   const handleDelete = () => {
-    console.log(id)
     dispatch(deleteTask(id));
     setDeleteModal(false);
   };

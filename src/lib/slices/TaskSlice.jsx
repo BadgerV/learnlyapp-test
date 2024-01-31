@@ -1,5 +1,7 @@
+//imports
 import { createSlice } from "@reduxjs/toolkit";
 
+//sets initial state
 const initialState = {
   totalTasks: 0,
   totalPending: 0,
@@ -11,12 +13,15 @@ const initialState = {
 
   filteredList: [],
   filterType: "",
+  timeCreated: "",
 };
 
+//definition of task slice
 export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
+    //creates task
     createTask: (state, action) => {
       const newtask = { ...action.payload };
 
@@ -44,19 +49,21 @@ export const taskSlice = createSlice({
           return task.status === state.filterType;
         });
       }
-
+      //saves listOfTasks in localstorage
       localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
     },
 
+    //updates task
     updateTask: (state, action) => {
       const { id } = action.payload;
       const updatedTask = { ...action.payload.formData };
 
-      // Ensure serializable values
       updatedTask.status = action.payload.formData.status.value;
 
       // Find the index of the task to update
       const index = state.lisOfTasks.findIndex((task) => task.id === id);
+
+      updatedTask.createdAt = state.lisOfTasks[index].createdAt;
 
       if (index !== -1) {
         // Update the task, preserving serializable values
@@ -83,10 +90,11 @@ export const taskSlice = createSlice({
           return task.status === state.filterType;
         });
       }
-
+      //saves listOfTasks in localstorage
       localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
     },
 
+    //deletes task
     deleteTask: (state, action) => {
       const idToDelete = action.payload;
 
@@ -112,12 +120,14 @@ export const taskSlice = createSlice({
           return task.status === state.filterType;
         });
       }
-
+      //saves listOfTasks in localstorage
       localStorage.setItem("listOfTasks", JSON.stringify(state.lisOfTasks));
     },
+    //sets the particular task ID to beb deleted
     setIDToBeDeleted: (state, action) => {
       state.taskToBeDeletedId = action.payload;
     },
+    //filters tasks
     filterTasks: (state, action) => {
       state.filterType = action.payload;
       if (action.payload !== "") {
@@ -126,8 +136,28 @@ export const taskSlice = createSlice({
         });
       }
     },
+
+    //sets list of tasks at the beginning of application from localstorage
     setListOfTasks: (state, action) => {
       state.lisOfTasks = action.payload;
+
+      // Update the total tasks and respective status counts
+      state.totalTasks = state.lisOfTasks.length;
+      state.totalPending = state.lisOfTasks.filter(
+        (task) => task.status === "pending"
+      ).length;
+      state.totalCompleted = state.lisOfTasks.filter(
+        (task) => task.status === "completed"
+      ).length;
+      state.totalUrgent = state.lisOfTasks.filter(
+        (task) => task.status === "urgent"
+      ).length;
+    },
+
+    setTimeCreated: (state, action) => {
+      state.timeCreated = action.payload;
+
+      localStorage.setItem("timeCreated", action.payload);
     },
   },
 });
@@ -139,6 +169,7 @@ export const {
   deleteTask,
   filterTasks,
   setListOfTasks,
+  setTimeCreated,
 } = taskSlice.actions;
 
 export const taskReducer = taskSlice.reducer;
